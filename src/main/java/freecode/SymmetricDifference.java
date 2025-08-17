@@ -16,15 +16,24 @@ public class SymmetricDifference {
     }
 
     public int[] findSymmetricDifference(int[]... nums) {
-        int noOfArrays = nums.length;
-        if (noOfArrays < 2) {
+        int numsLength = nums.length;
+        int[] list = new int[10];
+        if (numsLength == 1) {
             return nums[0];
+        } else if (numsLength == 2) {
+            list = SymDiff(nums[0], nums[1]);
+            return list;
+        } else {
+            list = SymDiff(nums[0], nums[1]);
+            for (int i = 2; i < numsLength; i++) {
+                list = SymDiff(list, nums[i]);
+            }
         }
-        List<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < noOfArrays; i++) {
 
+        for (int i = 0; i < numsLength;) {
+            list = SymDiff(nums[i], nums[i++]);
         }
-
+        return list;
     }
 
     public int[] SymDiff(int[] arg1, int[] arg2) {
