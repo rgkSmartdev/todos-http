@@ -1,10 +1,8 @@
 package freecode;
 
 import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * Symmetric difference - find the elements that are in one set but not the other.
@@ -18,6 +16,7 @@ public class SymmetricDifference {
     public int[] findSymmetricDifference(int[]... nums) {
         int numsLength = nums.length;
         int[] list = new int[10];
+        System.out.println("Length: " + numsLength);
         if (numsLength == 1) {
             return nums[0];
         } else if (numsLength == 2) {
@@ -30,26 +29,13 @@ public class SymmetricDifference {
             }
         }
 
-        for (int i = 0; i < numsLength;) {
-            list = SymDiff(nums[i], nums[i++]);
-        }
         return list;
     }
 
     public int[] SymDiff(int[] arg1, int[] arg2) {
-        HashSet<Integer> delta = new HashSet<Integer>();
-        for (int i = 0; i < arg1.length; i++) {
-            for (int j = 0; j < arg2.length; j++) {
-                if (arg1[i] != arg2[j]) {
-                    delta.add(arg1[i]);
-                }
-            }
-        }
-        int[] result = new int[delta.size()];
-        int i = 0;
-        for (Integer integer : delta) {
-            result[i++] = integer;
-        }
-        return result;
+        Stream<Integer> s1 = Arrays.stream(arg1).boxed();
+        Stream<Integer> s2 = Arrays.stream(arg2).boxed();
+
+        return Stream.concat(s1, s2).distinct().mapToInt(Integer::intValue).toArray();
     }
 }
