@@ -15,7 +15,7 @@ public class SymmetricDifference {
 
     public int[] findSymmetricDifference(int[]... nums) {
         int numsLength = nums.length;
-        int[] list = new int[10];
+        int[] list;
         System.out.println("Length: " + numsLength);
         if (numsLength == 1) {
             return nums[0];
@@ -33,9 +33,18 @@ public class SymmetricDifference {
     }
 
     public int[] SymDiff(int[] arg1, int[] arg2) {
-        Stream<Integer> s1 = Arrays.stream(arg1).boxed();
-        Stream<Integer> s2 = Arrays.stream(arg2).boxed();
-
-        return Stream.concat(s1, s2).distinct().mapToInt(Integer::intValue).toArray();
+        // sym difference is eliminating elements which are present in both the arrays
+        Stream<Integer> S1 = Arrays.stream(arg1).boxed();
+        Stream<Integer> S2 = Arrays.stream(arg2).boxed();
+        int[] mergedArr = Stream.concat(S1, S2).mapToInt(Integer::intValue).toArray();
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < mergedArr.length; i++) {
+            for (int j = i + 1; j < mergedArr.length; j++) {
+                if (mergedArr[i] == mergedArr[j]) {
+                    list.add(mergedArr[i]);
+                }
+            }
+        }
+        return list.isEmpty() ? mergedArr :  list.stream().mapToInt(Integer::intValue).toArray();
     }
 }
