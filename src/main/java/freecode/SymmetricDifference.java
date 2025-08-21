@@ -47,4 +47,24 @@ public class SymmetricDifference {
         }
         return list.isEmpty() ? mergedArr :  list.stream().mapToInt(Integer::intValue).toArray();
     }
+
+    public int[] selectionSort(int[] nums) {
+        int[] sorted = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            int min = nums[i];
+            int minIndex = i;
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] < min) {
+                    min = nums[j];
+                    minIndex = j;
+                }
+            }
+            // swap
+            int temp = nums[i];
+            nums[i] = min;
+            nums[minIndex] = temp;
+            sorted[i] = min;
+        }
+        return sorted;
+    }
 }
