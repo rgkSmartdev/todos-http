@@ -100,4 +100,26 @@ public class SymmetricDifference {
         }
         return sorted;
     }
+
+    public int[] bubbleSort(int[] arg1) {
+        int n = arg1.length;
+        int[] arr = Arrays.copyOf(arg1, n);
+
+        for(int i=0; i< arr.length -1; i++) {
+            boolean swap = false;
+            for (int j=0; j< arr.length - i -1; j++) {
+                if(arr[j+1] < arr[j]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                    swap = true;
+                }
+
+            }
+            if(!swap) {
+                break;
+            }
+        }
+        return arr;
+    }
 }

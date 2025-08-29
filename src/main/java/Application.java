@@ -12,5 +12,7 @@ public class Application {
         System.out.println(Arrays.toString(res));
 
         System.out.println(Arrays.toString(sD.selectionSort(new int[]{7,4,1,5,3})));
+
+        System.out.println(Arrays.toString(sD.bubbleSort(new int[]{7,4,1,5,3})));
     }
 }
