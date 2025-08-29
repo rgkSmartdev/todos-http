@@ -20,12 +20,12 @@ public class SymmetricDifference {
         if (numsLength == 1) {
             return nums[0];
         } else if (numsLength == 2) {
-            list = SymDiff(nums[0], nums[1]);
+            list = symmetricDifference(nums[0], nums[1]);
             return list;
         } else {
-            list = SymDiff(nums[0], nums[1]);
+            list = symmetricDifference(nums[0], nums[1]);
             for (int i = 2; i < numsLength; i++) {
-                list = SymDiff(list, nums[i]);
+                list = symmetricDifference(list, nums[i]);
             }
         }
 
@@ -46,6 +46,39 @@ public class SymmetricDifference {
             }
         }
         return list.isEmpty() ? mergedArr :  list.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    /***
+     * Sym Diff is finding elements that are in either sets but not on both
+     * @param arg1
+     * @param arg2
+     * @return Symmetric difference
+     */
+    public int[] symmetricDifference(int[] arg1, int[] arg2) {
+        // eliminate duplicates from both arrays
+         Set<Integer> s1 = new HashSet<Integer>();
+         Set<Integer> s2 = new HashSet<Integer>();
+
+         for (int i : arg1) {
+             s1.add(i);
+         }
+         for (int i : arg2) {
+             s2.add(i);
+         }
+         List<Integer> result = new ArrayList<Integer>();
+
+         for (int i : s1) {
+             if (!s2.contains(i)) {
+                 result.add(i);
+             }
+         }
+         for (int i : s2) {
+             if (!s1.contains(i)) {
+                 result.add(i);
+             }
+         }
+
+         return result.stream().mapToInt(Integer::intValue).toArray();
     }
 
     public int[] selectionSort(int[] nums) {
