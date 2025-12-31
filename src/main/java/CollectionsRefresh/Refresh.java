@@ -1,6 +1,8 @@
 package CollectionsRefresh;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Refresh {
     public Refresh() {
@@ -19,5 +21,25 @@ public class Refresh {
             }
         }
         return cities;
+    }
+
+    public void test_hash_map() {
+        HashMap<String, Integer> agesHash = new HashMap<String, Integer>();
+
+        agesHash.put("John", 36);
+        agesHash.put("Alex", 30);
+        agesHash.put("Bob", 25);
+        agesHash.put("Alice", 27);
+
+        System.out.println("Ages of people:" + agesHash);
+
+        for (Map.Entry<String, Integer> entry : agesHash.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+
+        if (!agesHash.containsKey("Alex")) {
+            System.out.println("Alex is not in the map");
+        }
+
     }
 }
