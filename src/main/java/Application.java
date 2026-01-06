@@ -17,16 +17,5 @@ public class Application {
         System.out.println(Arrays.toString(sD.selectionSort(new int[]{7,4,1,5,3})));
 
         System.out.println(Arrays.toString(sD.bubbleSort(new int[]{7,4,1,5,3})));
-        ArrayList<String> cities = new ArrayList<String>();
-        cities.add("London");
-        cities.add("London");
-        cities.add("Madras");
-        cities.add("Bombay");
-        cities.add("Bombay");
-        cities.add("Hyderabad");
-        System.out.println(new Refresh().test_array_lists(cities));
-
-//        TestThread t1 = new TestThread();
-//        t1.start();
     }
 }
